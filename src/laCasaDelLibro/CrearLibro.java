@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -20,14 +21,14 @@ public class CrearLibro extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldISBN;
 	private JLabel labelTitulo;
-	private JTextField textField_1;
-	private JLabel lblNewLabel_3;
-	private JTextField textField_2;
-	private JLabel lblNewLabel_4;
-	private JTextField textField_3;
-	private JLabel lblNewLabel_5;
-	private JTextField textField_4;
-	private JLabel lblNewLabel;
+	private JTextField textFieldTitulo;
+	private JLabel labelNombreAutor;
+	private JTextField textFieldNombreAutor;
+	private JLabel labelCantidad;
+	private JTextField textFieldCantidad;
+	private JLabel labelEnlaceImagen;
+	private JTextField textFieldEnlaceImagen;
+	private JLabel labelTituloCrear;
 
 	/**
 	 * Launch the application.
@@ -65,46 +66,30 @@ public class CrearLibro extends JFrame {
 		
 
 		
-		labelTitulo = new JLabel("Titulo");
-		labelTitulo.setBounds(39, 158, 81, 14);
-		contentPane.add(labelTitulo);
+		titulo();
 		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("");
-		textField_1.setColumns(10);
-		textField_1.setBounds(39, 174, 238, 27);
-		contentPane.add(textField_1);
+		autor();
 		
-		lblNewLabel_3 = new JLabel("Nombre Autor");
-		lblNewLabel_3.setBounds(39, 212, 81, 14);
-		contentPane.add(lblNewLabel_3);
+		cantidad();
 		
-		textField_2 = new JTextField();
-		textField_2.setToolTipText("");
-		textField_2.setColumns(10);
-		textField_2.setBounds(39, 228, 238, 27);
-		contentPane.add(textField_2);
+		enlaceImagen();
 		
-		lblNewLabel_4 = new JLabel("Cantidad");
-		lblNewLabel_4.setBounds(39, 267, 81, 14);
-		contentPane.add(lblNewLabel_4);
+		botonCrear();
 		
-		textField_3 = new JTextField();
-		textField_3.setToolTipText("");
-		textField_3.setColumns(10);
-		textField_3.setBounds(39, 283, 238, 27);
-		contentPane.add(textField_3);
+		ImageIcon imageIllustration = new ImageIcon("./images/Bookshop-ill.png");
+		JLabel lblNewLabel_6 = new JLabel(imageIllustration);
+		lblNewLabel_6.setBounds(360, 103, 285, 298);
+		contentPane.add(lblNewLabel_6);
 		
-		lblNewLabel_5 = new JLabel("Enlace Imagen");
-		lblNewLabel_5.setBounds(39, 320, 105, 14);
-		contentPane.add(lblNewLabel_5);
-		
-		textField_4 = new JTextField();
-		textField_4.setToolTipText("");
-		textField_4.setColumns(10);
-		textField_4.setBounds(39, 336, 238, 27);
-		contentPane.add(textField_4);
-		
+		labelTituloCrear = new JLabel("Crear Libro  ");
+		labelTituloCrear.setForeground(new Color(57, 81, 68));
+		labelTituloCrear.setFont(new Font("Segoe UI", Font.BOLD, 32));
+		labelTituloCrear.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelTituloCrear.setBounds(452, 28, 193, 53);
+		contentPane.add(labelTituloCrear);
+	}
+
+	private void botonCrear() {
 		JButton btnCrearLibro = new JButton("Crear Libro");
 		btnCrearLibro.setForeground(new Color(255, 255, 255));
 		btnCrearLibro.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -112,17 +97,55 @@ public class CrearLibro extends JFrame {
 		btnCrearLibro.setBounds(39, 374, 238, 27);
 		contentPane.add(btnCrearLibro);
 		
-		ImageIcon imageIllustration = new ImageIcon("./images/Bookshop-ill.png");
-		JLabel lblNewLabel_6 = new JLabel(imageIllustration);
-		lblNewLabel_6.setBounds(360, 103, 285, 298);
-		contentPane.add(lblNewLabel_6);
+		//JOptionPane.showMessageDialog(null, "Este es un mensaje de alerta", "Correcto", JOptionPane.DEFAULT_OPTION); Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
+	}
+
+	private void enlaceImagen() {
+		labelEnlaceImagen = new JLabel("Enlace Imagen");
+		labelEnlaceImagen.setBounds(39, 320, 105, 14);
+		contentPane.add(labelEnlaceImagen);
 		
-		lblNewLabel = new JLabel("Crear Libro  ");
-		lblNewLabel.setForeground(new Color(57, 81, 68));
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 32));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(452, 28, 193, 53);
-		contentPane.add(lblNewLabel);
+		textFieldEnlaceImagen = new JTextField();
+		textFieldEnlaceImagen.setToolTipText("");
+		textFieldEnlaceImagen.setColumns(10);
+		textFieldEnlaceImagen.setBounds(39, 336, 238, 27);
+		contentPane.add(textFieldEnlaceImagen);
+	}
+
+	private void cantidad() {
+		labelCantidad = new JLabel("Cantidad");
+		labelCantidad.setBounds(39, 267, 81, 14);
+		contentPane.add(labelCantidad);
+		
+		textFieldCantidad = new JTextField();
+		textFieldCantidad.setToolTipText("");
+		textFieldCantidad.setColumns(10);
+		textFieldCantidad.setBounds(39, 283, 238, 27);
+		contentPane.add(textFieldCantidad);
+	}
+
+	private void autor() {
+		labelNombreAutor = new JLabel("Nombre Autor");
+		labelNombreAutor.setBounds(39, 212, 81, 14);
+		contentPane.add(labelNombreAutor);
+		
+		textFieldNombreAutor = new JTextField();
+		textFieldNombreAutor.setToolTipText("");
+		textFieldNombreAutor.setColumns(10);
+		textFieldNombreAutor.setBounds(39, 228, 238, 27);
+		contentPane.add(textFieldNombreAutor);
+	}
+
+	private void titulo() {
+		labelTitulo = new JLabel("Titulo");
+		labelTitulo.setBounds(39, 158, 81, 14);
+		contentPane.add(labelTitulo);
+		
+		textFieldTitulo = new JTextField();
+		textFieldTitulo.setToolTipText("");
+		textFieldTitulo.setColumns(10);
+		textFieldTitulo.setBounds(39, 174, 238, 27);
+		contentPane.add(textFieldTitulo);
 	}
 
 	private void isbn() {
