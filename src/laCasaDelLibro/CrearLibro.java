@@ -105,12 +105,12 @@ public class CrearLibro extends JFrame {
 		textField_4.setBounds(39, 336, 238, 27);
 		contentPane.add(textField_4);
 		
-		JButton btnNewButton = new JButton("Crear Libro");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnNewButton.setBackground(new Color(57, 81, 68));
-		btnNewButton.setBounds(39, 374, 238, 27);
-		contentPane.add(btnNewButton);
+		JButton btnCrearLibro = new JButton("Crear Libro");
+		btnCrearLibro.setForeground(new Color(255, 255, 255));
+		btnCrearLibro.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnCrearLibro.setBackground(new Color(57, 81, 68));
+		btnCrearLibro.setBounds(39, 374, 238, 27);
+		contentPane.add(btnCrearLibro);
 		
 		ImageIcon imageIllustration = new ImageIcon("./images/Bookshop-ill.png");
 		JLabel lblNewLabel_6 = new JLabel(imageIllustration);
