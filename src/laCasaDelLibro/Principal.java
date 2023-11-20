@@ -47,39 +47,13 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		ImageIcon imageIcon = new ImageIcon("./images/logo-a.png");
-		JLabel lblNewLabel = new JLabel(imageIcon);
-		lblNewLabel.setBounds(268, 11, 118, 148);
-		contentPane.add(lblNewLabel);
+		logo();
 		
-		JButton btnNewButton = new JButton("Crear Libro");
-		btnNewButton.setBackground(new Color(170, 139, 86));
-		ImageIcon iconCreate = new ImageIcon("./images/create-icon.png"); // Reemplaza con la ruta de tu imagen
-        btnNewButton.setIcon(iconCreate);
-        btnNewButton.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		botonCrear();
 		
+		botonListar();
 		
-		btnNewButton.setBounds(71, 279, 118, 118);
-		contentPane.add(btnNewButton);
-		
-		JButton btnListarLibros = new JButton("Listar Libros");
-		ImageIcon iconListar = new ImageIcon("./images/list-icon.png"); // Reemplaza con la ruta de tu imagen
-        btnListarLibros.setIcon(iconListar);
-		btnListarLibros.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnListarLibros.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnListarLibros.setBackground(new Color(170, 139, 86));
-		btnListarLibros.setBounds(268, 279, 118, 118);
-		contentPane.add(btnListarLibros);
-		
-		JButton btnEliminarLibro = new JButton("Eliminar Libro");
-		ImageIcon iconDelete = new ImageIcon("./images/delete-icon.png"); // Reemplaza con la ruta de tu imagen
-        btnEliminarLibro.setIcon(iconDelete);
-		btnEliminarLibro.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnEliminarLibro.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnEliminarLibro.setBackground(new Color(170, 139, 86));
-		btnEliminarLibro.setBounds(474, 279, 118, 118);
-		contentPane.add(btnEliminarLibro);
+		botonEliminar();
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(78, 108, 80));
@@ -101,5 +75,61 @@ public class Principal extends JFrame {
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setBounds(20, 16, 501, 25);
 		panel.add(lblNewLabel_1_1);
+	}
+
+	private void logo() {
+		ImageIcon imageLogo = new ImageIcon("./images/logo-a.png");
+		JLabel labelLogo = new JLabel(imageLogo);
+		labelLogo.setBounds(268, 11, 118, 148);
+		contentPane.add(labelLogo);
+	}
+
+	private void botonCrear() {
+		JButton btnCreate = new JButton("Crear Libro");
+		btnCreate.setBackground(new Color(170, 139, 86));
+		ImageIcon iconCreate = new ImageIcon("./images/create-icon.png"); 
+        btnCreate.setIcon(iconCreate);
+        btnCreate.setVerticalTextPosition(SwingConstants.BOTTOM);
+        btnCreate.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCreate.setBounds(71, 279, 118, 118);
+		
+		btnCreate.addActionListener(e -> {
+			//PREGUNTAR A JAVIER HACER QUE LA VENTANA SEA MODAL Y NO CIERRE LA VENTANA PRINCIPAL
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						CrearLibro frame = new CrearLibro();
+						frame.setTitle("La Casa del Libro - Crear Libro");
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+		});
+		contentPane.add(btnCreate);
+	}
+
+	private void botonListar() {
+		JButton btnListarLibros = new JButton("Listar Libros");
+		ImageIcon iconListar = new ImageIcon("./images/list-icon.png"); 
+        btnListarLibros.setIcon(iconListar);
+		btnListarLibros.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnListarLibros.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnListarLibros.setBackground(new Color(170, 139, 86));
+		btnListarLibros.setBounds(268, 279, 118, 118);
+		contentPane.add(btnListarLibros);
+	}
+
+	private void botonEliminar() {
+		JButton btnEliminarLibro = new JButton("Eliminar Libro");
+		ImageIcon iconDelete = new ImageIcon("./images/delete-icon.png"); 
+        btnEliminarLibro.setIcon(iconDelete);
+		btnEliminarLibro.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnEliminarLibro.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnEliminarLibro.setBackground(new Color(170, 139, 86));
+		btnEliminarLibro.setBounds(474, 279, 118, 118);
+		contentPane.add(btnEliminarLibro);
 	}
 }
