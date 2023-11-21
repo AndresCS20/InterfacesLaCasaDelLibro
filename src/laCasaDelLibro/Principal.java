@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dialog.ModalityType;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -98,10 +100,12 @@ public class Principal extends JFrame {
 			//PREGUNTAR A JAVIER HACER QUE LA VENTANA SEA MODAL Y NO CIERRE LA VENTANA PRINCIPAL
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
-					try {
-						CrearLibro frame = new CrearLibro();
-						frame.setTitle("La Casa del Libro - Crear Libro");
-						frame.setVisible(true);
+					try {					
+						CrearLibro crearLibro = new CrearLibro();
+						crearLibro.setTitle("La Casa del Libro - Crear Libro");
+						crearLibro.setModalityType(ModalityType.MODELESS);
+						crearLibro.setVisible(true);
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

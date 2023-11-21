@@ -12,10 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class CrearLibro extends JFrame {
+public class CrearLibro extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -51,7 +53,7 @@ public class CrearLibro extends JFrame {
 	 */
 	public CrearLibro() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //PUEDE QUE ESTE EL PROBLEMA ACÁ
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); //PUEDE QUE ESTE EL PROBLEMA ACÁ
 		setBounds(100, 100, 691, 481);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
