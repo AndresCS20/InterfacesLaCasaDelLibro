@@ -124,6 +124,24 @@ public class Principal extends JFrame {
 		btnListarLibros.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnListarLibros.setBackground(new Color(170, 139, 86));
 		btnListarLibros.setBounds(268, 279, 118, 118);
+		btnListarLibros.addActionListener(e -> {
+			//PREGUNTAR A JAVIER HACER QUE LA VENTANA SEA MODAL Y NO CIERRE LA VENTANA PRINCIPAL
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {					
+						ListarLibros listarLibros = new ListarLibros();
+						listarLibros.setTitle("La Casa del Libro - Listar Libros");
+						listarLibros.setModalityType(ModalityType.MODELESS);
+						listarLibros.setVisible(true);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+		});
+		
 		contentPane.add(btnListarLibros);
 	}
 
