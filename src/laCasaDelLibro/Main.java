@@ -4,9 +4,11 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JDialog;
+
 public class Main {
 
-	public static ArrayList<Libro> listaLibros ;
+	public static ArrayList<Libro> listaLibros = new ArrayList<Libro>() ;
 	
 	public static void main(String[] args) {
 		
@@ -29,9 +31,13 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal();
-					frame.setTitle("La Casa del Libro - Pagina Principal");
-					frame.setVisible(true);
+//					Principal frame = new Principal();
+//					frame.setTitle("La Casa del Libro - Pagina Principal");
+//					frame.setVisible(true);
+					
+					VerMasLibro dialog = new VerMasLibro();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

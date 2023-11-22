@@ -35,6 +35,7 @@ public class ModificarLibro extends JDialog {
 	private JLabel labelEnlaceImagen;
 	private JTextField textFieldEnlaceImagen;
 	private JLabel labelTituloModificar;
+	private VerMasLibro verMas = new VerMasLibro();
 
 	/**
 	 * Launch the application.
@@ -134,6 +135,7 @@ public class ModificarLibro extends JDialog {
 		textFieldISBN = new JTextField();
 		textFieldISBN.setBounds(39, 120, 238, 27);
 		contentPane.add(textFieldISBN);
+		textFieldISBN.setText(verMas.getLibro().getISBN());
 		textFieldISBN.setColumns(10);
 	}
 
@@ -146,6 +148,7 @@ public class ModificarLibro extends JDialog {
 		textFieldTitulo.setToolTipText("");
 		textFieldTitulo.setColumns(10);
 		textFieldTitulo.setBounds(39, 174, 238, 27);
+		textFieldTitulo.setText(verMas.getLibro().getTitulo());
 		contentPane.add(textFieldTitulo);
 	}
 
@@ -158,6 +161,7 @@ public class ModificarLibro extends JDialog {
 		textFieldNombreAutor.setToolTipText("");
 		textFieldNombreAutor.setColumns(10);
 		textFieldNombreAutor.setBounds(39, 228, 238, 27);
+		textFieldNombreAutor.setText(verMas.getLibro().getAutor());
 		contentPane.add(textFieldNombreAutor);
 	}
 
@@ -170,6 +174,7 @@ public class ModificarLibro extends JDialog {
 		textFieldCantidad.setToolTipText("");
 		textFieldCantidad.setColumns(10);
 		textFieldCantidad.setBounds(39, 283, 238, 27);
+		textFieldCantidad.setText(String.valueOf(verMas.getLibro().getCantidad()));
 		contentPane.add(textFieldCantidad);
 	}
 
@@ -182,6 +187,7 @@ public class ModificarLibro extends JDialog {
 		textFieldEnlaceImagen.setToolTipText("");
 		textFieldEnlaceImagen.setColumns(10);
 		textFieldEnlaceImagen.setBounds(39, 336, 238, 27);
+		textFieldEnlaceImagen.setText(verMas.getLibro().getUrlImagen());
 		contentPane.add(textFieldEnlaceImagen);
 	}
 
@@ -193,6 +199,25 @@ public class ModificarLibro extends JDialog {
 		btnCrearLibro.setBounds(39, 374, 238, 27);
 		contentPane.add(btnCrearLibro);
 		
-		//JOptionPane.showMessageDialog(null, "Este es un mensaje de alerta", "Correcto", JOptionPane.DEFAULT_OPTION); Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
+		String isbn = textFieldISBN.getText(); 
+		String titulo = textFieldTitulo.getText();
+		String nombre = textFieldNombreAutor.getText();
+		int cantidad = 0;
+		try {
+		 cantidad = Integer.parseInt(textFieldCantidad.getText());
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String url = textFieldEnlaceImagen.getText();
+		Libro nuevoLibro = new Libro(isbn,titulo,nombre,cantidad,url);
+		Main.listaLibros.add(nuevoLibro);
+		
+		System.out.println(Main.listaLibros.toString());
+		System.out.println(Main.listaLibros.size());
+		
+//		JOptionPane.showMessageDialog(null, isbn, "Correcto", JOptionPane.DEFAULT_OPTION); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
+		
+		//JOptionPane.showMessageDialog(null, "Este es un mensaje de alerta", "Correcto", JOptionPane.DEFAULT_OPTION); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
 	}
 }
