@@ -23,7 +23,7 @@ public class Main {
         	
 		listaLibros = new ArrayList<>(Arrays.asList(libro1,libro2,libro3,libro4,libro5,libro6,libro7,libro8,libro9,libro10));
 		
-		System.out.println("Hola mundo soy juans");
+		
 		System.out.println(listaLibros);
 		
 		EventQueue.invokeLater(new Runnable() {

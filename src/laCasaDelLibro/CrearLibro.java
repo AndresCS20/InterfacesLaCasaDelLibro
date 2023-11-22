@@ -20,9 +20,23 @@ import java.util.ArrayList;
 import javax.swing.SwingConstants;
 
 
-public static ArrayList<String> listaErrores;
+
 
 public class CrearLibro extends JDialog {
+	
+	public  ArrayList<String> listaErrores=new ArrayList<String>();
+	String error1= "El ISBN tiene que tener 13 caracteres. ";
+	String error2= "Introduce un título, está vacio. ";
+	String error3 = "Introduce un autor, está vacío. ";
+	String error4 = "Introduce una cantidad. ";
+	String error5 = "Cantidad debe ser un número entero. ";
+	String error6 = "Introduce el enlace de la imagen. ";
+	String error7 = "El ISBN no puede contener comas. ";
+	String error8 = "El título no puede contener comas. ";
+	String error9 = "El autor no puede contener comas. ";
+	String error10 = "El enlace no puede contener comas. ";
+	
+	
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -113,6 +127,7 @@ public class CrearLibro extends JDialog {
 		textFieldTitulo.setColumns(10);
 		textFieldTitulo.setBounds(39, 174, 238, 27);
 		contentPane.add(textFieldTitulo);
+		
 	}
 
 	private void isbn() {
@@ -164,6 +179,7 @@ public class CrearLibro extends JDialog {
 	}
 
 	private void botonCrear() {
+		
 		JButton btnCrearLibro = new JButton("Crear Libro");
 		btnCrearLibro.setForeground(new Color(255, 255, 255));
 		btnCrearLibro.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -172,27 +188,80 @@ public class CrearLibro extends JDialog {
 		contentPane.add(btnCrearLibro);
 		
 		btnCrearLibro.addActionListener(e->{
-			String isbn = textFieldISBN.getText(); 
+			listaErrores.clear();
+
+			String isbn = textFieldISBN.getText();
+			comprobarISBN(isbn);
 			String titulo = textFieldTitulo.getText();
+			comprobarTitulo(titulo);
 			String nombre = textFieldNombreAutor.getText();
+			comprobarAutor(nombre);
 			int cantidad = 0;
 			try {
 			 cantidad = Integer.parseInt(textFieldCantidad.getText());
 			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			listaErrores.add(error5);
 			}
 			String url = textFieldEnlaceImagen.getText();
+			comprobarEnlace(url);
+			String totalErrores="";
+			if(listaErrores.size()>0) {
+				for(String error : listaErrores) {
+				 totalErrores+=error;
+				}
+				JOptionPane.showMessageDialog(null, totalErrores, "Ha ocurrido un error", JOptionPane.DEFAULT_OPTION); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
+
+				System.out.println(totalErrores);
+			}
 			Libro nuevoLibro = new Libro(isbn,titulo,nombre,cantidad,url);
 			Main.listaLibros.add(nuevoLibro);
 			
 			System.out.println(Main.listaLibros.toString());
 			System.out.println(Main.listaLibros.size());
 			
-			JOptionPane.showMessageDialog(null, isbn, "Correcto", JOptionPane.DEFAULT_OPTION); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
-
+			
 		});
 		
 		//JOptionPane.showMessageDialog(null, "Este es un mensaje de alerta", "Correcto", JOptionPane.DEFAULT_OPTION); Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
 	}
+	
+	
+	public void comprobarISBN(String isbn) {
+		if(isbn.length()!=13) {
+			listaErrores.add(error1);
+		}
+		if(isbn.contains(",")) {
+			listaErrores.add(error7);
+		}
+	}
+	
+	public void comprobarTitulo(String titulo) {
+		if(titulo.length()==0) {
+			listaErrores.add(error2);
+		}
+		if(titulo.contains(",")) {
+			listaErrores.add(error8);
+		}
+	}
+	
+	
+	public void comprobarAutor(String autor) {
+		if (autor.length()==0){
+			listaErrores.add(error3);
+			
+		}if(autor.contains(",")) {
+			listaErrores.add(error9);
+		}
+	}
+	
+	public void comprobarEnlace(String enlace) {
+		if(enlace.length()==0) {
+			listaErrores.add(error6);
+		}
+		if(enlace.contains(",")) {
+			listaErrores.add(error10);
+		}
+	}
+
+	
 }
