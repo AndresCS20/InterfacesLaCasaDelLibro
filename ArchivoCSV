@@ -1,0 +1,11 @@
+ISBN,Titulo,Autor,Stock,Url_imagen_Caratula
+978-0345803481,Ready Player One,Ernest Cline,20,http://example.com/readyplayerone.jpg
+978-0439064873,Harry Potter and the Chamber of Secrets,J.K. Rowling,30,http://example.com/harrypotter.jpg
+978-0451524935,1984,George Orwell,25,http://example.com/1984.jpg
+978-0140283334,Fight Club,Chuck Palahniuk,15,http://example.com/fightclub.jpg
+978-0307474278,The Girl with the Dragon Tattoo,Stieg Larsson,10,http://example.com/dragontattoo.jpg
+978-0062457790,The Alchemist,Paulo Coelho,35,http://example.com/alchemist.jpg
+978-0307887443,The Lean Startup,Eric Ries,40,http://example.com/leanstartup.jpg
+978-1591847786,Zero to One,Peter Thiel,30,http://example.com/zerotoone.jpg
+978-0062316110,Thinking Fast and Slow,Daniel Kahneman,20,http://example.com/thinkingfastandslow.jpg
+978-0062225672,Divergent,Veronica Roth,25,http://example.com/divergent.jpg

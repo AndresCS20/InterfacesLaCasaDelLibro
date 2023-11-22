@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Main {
 
-	public static ArrayList<Libro> listaLibros ;
+	public static ArrayList<Libro> listaLibros=new ArrayList<Libro>();
 	
 	public static void main(String[] args) {
 		
@@ -18,10 +18,10 @@ public class Main {
         Libro libro6 = new Libro("978-0062457790", "The Alchemist", "Paulo Coelho", 35, "http://example.com/alchemist.jpg");
         Libro libro7 = new Libro("978-0307887443", "The Lean Startup", "Eric Ries", 40, "http://example.com/leanstartup.jpg");
         Libro libro8 = new Libro("978-1591847786", "Zero to One", "Peter Thiel", 30, "http://example.com/zerotoone.jpg");
-        Libro libro9 = new Libro("978-0062316110", "Thinking, Fast and Slow", "Daniel Kahneman", 20, "http://example.com/thinkingfastandslow.jpg");
+        Libro libro9 = new Libro("978-0062316110", "Thinking Fast and Slow", "Daniel Kahneman", 20, "http://example.com/thinkingfastandslow.jpg");
         Libro libro10 = new Libro("978-0062225672", "Divergent", "Veronica Roth", 25, "http://example.com/divergent.jpg");
         	
-		listaLibros = new ArrayList<>(Arrays.asList(libro1,libro2,libro3,libro4,libro5,libro6,libro7,libro8,libro9,libro10));
+		listaLibros.addAll(Arrays.asList(libro1,libro2,libro3,libro4,libro5,libro6,libro7,libro8,libro9,libro10));
 		
 		System.out.println("Hola mundo soy juans");
 		System.out.println(listaLibros);
