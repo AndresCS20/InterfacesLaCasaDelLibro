@@ -96,7 +96,8 @@ public class EliminarLibro extends JDialog {
 		for (int i = 0; i < listaLibros.size(); i++) {
 			if(buscarLibro(listaLibros).getTitulo().equalsIgnoreCase(listaLibros.get(i).getTitulo())) {
 				System.out.println("El libro " + listaLibros.get(i) + " ha sido eliminado");
-				listaLibros.remove(i);
+				listaLibros.remove(listaLibros.get(i));
+				break;
 			}
 		}
 	}
