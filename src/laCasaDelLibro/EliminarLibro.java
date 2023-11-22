@@ -56,7 +56,21 @@ public class EliminarLibro extends JDialog {
 		btn_buscar.addActionListener(e->{
 			buscarLibro(Main.listaLibros);
 			errores();
+		JLabel datos_libro = new JLabel("");
+		datos_libro.setBounds(63, 42, 152, 155);
+		getContentPane().add(datos_libro);
+		Libro libroFinal = buscarLibro(Main.listaLibros);
+		if(libroFinal != null) {
+			String dl = "ISBN: " + libroFinal.getISBN() 
+					+ "\nTítulo: " + libroFinal.getTitulo()
+					+ "\nAutor: " + libroFinal.getAutor()
+					+ "\nStock " + libroFinal.getCantidad()
+					+ "\nURL" + libroFinal.getUrlImagen();
+			datos_libro.setText(dl);
+		}
 		});
+			
+		
 		
 		JButton btn_eliminar = new JButton("Eliminar libro");
 		btn_eliminar.setBounds(275, 180, 109, 33);
@@ -64,24 +78,14 @@ public class EliminarLibro extends JDialog {
 		btn_eliminar.addActionListener(e->{
 			eliminarLibro(Main.listaLibros);
 		});
-		
-		JLabel datos_libro = new JLabel("");
-		datos_libro.setBounds(63, 42, 152, 155);
-		getContentPane().add(datos_libro);
-		String dl = "ISBN: " + buscarLibro(Main.listaLibros).getISBN() 
-				+ "\nTítulo: " + buscarLibro(Main.listaLibros).getTitulo()
-				+ "\nAutor: " + buscarLibro(Main.listaLibros).getAutor()
-				+ "\nStock " + buscarLibro(Main.listaLibros).getCantidad()
-				+ "\nURL" + buscarLibro(Main.listaLibros).getUrlImagen();
-		datos_libro.setText(dl);
-		
+	
 	}
 	
 	public static Libro buscarLibro(ArrayList<Libro> listaLibros) {
-		Libro libro;
+	
 		for (int i = 0; i < listaLibros.size(); i++) {
 			if(listaLibros.get(i).getTitulo().equalsIgnoreCase(tf_buscar.getText())) {
-				libro = listaLibros.get(i);
+				Libro libro = listaLibros.get(i);
 				return libro;
 			}
 		}

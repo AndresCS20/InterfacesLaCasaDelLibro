@@ -154,5 +154,21 @@ public class Principal extends JFrame {
 		btnEliminarLibro.setBackground(new Color(170, 139, 86));
 		btnEliminarLibro.setBounds(474, 279, 118, 118);
 		contentPane.add(btnEliminarLibro);
+		
+		btnEliminarLibro.addActionListener(e->{
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {					
+						EliminarLibro eliminarLibros = new EliminarLibro();
+						eliminarLibros.setTitle("La Casa del Libro - Eliminar Libro");
+						eliminarLibros.setModalityType(ModalityType.MODELESS);
+						eliminarLibros.setVisible(true);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		});
 	}
 }
