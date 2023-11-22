@@ -1,0 +1,107 @@
+package laCasaDelLibro;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.util.ArrayList;
+
+public class EliminarLibro extends JDialog {
+
+	private static final long serialVersionUID = 1L;
+	private static JTextField tf_buscar;
+
+	/**
+	 * Launch the application.
+	 */
+	
+	public static void main(String[] args) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EliminarLibro dialog = new EliminarLibro();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public EliminarLibro() {
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+
+		JLabel tv_cabecera = new JLabel("Eliminar libro");
+		tv_cabecera.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		tv_cabecera.setBounds(254, 10, 158, 47);
+		getContentPane().add(tv_cabecera);
+		
+		
+		tf_buscar = new JTextField();
+		tf_buscar.setBounds(275, 69, 96, 19);
+		getContentPane().add(tf_buscar);
+		tf_buscar.setColumns(10);
+		
+		JButton btn_buscar = new JButton("Buscar");
+		btn_buscar.setBounds(275, 113, 85, 21);
+		getContentPane().add(btn_buscar);
+		btn_buscar.addActionListener(e->{
+			buscarLibro(Main.listaLibros);
+			errores();
+		});
+		
+		JButton btn_eliminar = new JButton("Eliminar libro");
+		btn_eliminar.setBounds(275, 180, 109, 33);
+		getContentPane().add(btn_eliminar);
+		btn_eliminar.addActionListener(e->{
+			eliminarLibro(Main.listaLibros);
+		});
+		
+		JLabel datos_libro = new JLabel("");
+		datos_libro.setBounds(63, 42, 152, 155);
+		getContentPane().add(datos_libro);
+		String dl = "ISBN: " + buscarLibro(Main.listaLibros).getISBN() 
+				+ "\nTítulo: " + buscarLibro(Main.listaLibros).getTitulo()
+				+ "\nAutor: " + buscarLibro(Main.listaLibros).getAutor()
+				+ "\nStock " + buscarLibro(Main.listaLibros).getCantidad()
+				+ "\nURL" + buscarLibro(Main.listaLibros).getUrlImagen();
+		datos_libro.setText(dl);
+		
+	}
+	
+	public static Libro buscarLibro(ArrayList<Libro> listaLibros) {
+		Libro libro;
+		for (int i = 0; i < listaLibros.size(); i++) {
+			if(listaLibros.get(i).getTitulo().equalsIgnoreCase(tf_buscar.getText())) {
+				libro = listaLibros.get(i);
+				return libro;
+			}
+		}
+		return null;
+	}
+	
+	public static void eliminarLibro(ArrayList<Libro> listaLibros) {
+		for (int i = 0; i < listaLibros.size(); i++) {
+			if(buscarLibro(listaLibros).getTitulo().equalsIgnoreCase(listaLibros.get(i).getTitulo())) {
+				System.out.println("El libro " + listaLibros.get(i) + " ha sido eliminado");
+				listaLibros.remove(listaLibros.get(i));
+				break;
+			}
+		}
+	}
+	
+	public static void errores() {
+		if(buscarLibro(Main.listaLibros) == null) {
+			System.out.println("El libro especificado no existe");
+		}
+	}
+}
