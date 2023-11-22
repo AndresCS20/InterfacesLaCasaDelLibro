@@ -15,14 +15,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.Font;
-import java.util.ArrayList;
+import java.awt.Image;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.SwingConstants;
 
-
-public static ArrayList<String> listaErrores;
-
-public class CrearLibro extends JDialog {
+public class ModificarLibro extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,7 +34,7 @@ public class CrearLibro extends JDialog {
 	private JTextField textFieldCantidad;
 	private JLabel labelEnlaceImagen;
 	private JTextField textFieldEnlaceImagen;
-	private JLabel labelTituloCrear;
+	private JLabel labelTituloModificar;
 
 	/**
 	 * Launch the application.
@@ -44,7 +43,7 @@ public class CrearLibro extends JDialog {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
 //				try {
-//					CrearLibro frame = new CrearLibro();
+//					ModificarLibro frame = new ModificarLibro();
 //					frame.setVisible(true);
 //				} catch (Exception e) {
 //					e.printStackTrace();
@@ -56,7 +55,7 @@ public class CrearLibro extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public CrearLibro() {
+	public ModificarLibro() {
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); //PUEDE QUE ESTE EL PROBLEMA ACÁ
 		setBounds(100, 100, 691, 481);
@@ -83,17 +82,14 @@ public class CrearLibro extends JDialog {
 		
 		botonCrear();
 		
-		ImageIcon imageIllustration = new ImageIcon("./images/Bookshop-ill.png");
-		JLabel lblNewLabel_6 = new JLabel(imageIllustration);
-		lblNewLabel_6.setBounds(360, 103, 285, 298);
-		contentPane.add(lblNewLabel_6);
+		tituloVentana();
 		
-		labelTituloCrear = new JLabel("Crear Libro  ");
-		labelTituloCrear.setForeground(new Color(57, 81, 68));
-		labelTituloCrear.setFont(new Font("Segoe UI", Font.BOLD, 32));
-		labelTituloCrear.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelTituloCrear.setBounds(452, 28, 193, 53);
-		contentPane.add(labelTituloCrear);
+		try {
+			imagenLibro();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void logo() {
@@ -101,6 +97,44 @@ public class CrearLibro extends JDialog {
 		JLabel labelImgLogo = new JLabel(imageIcon);
 		labelImgLogo.setBounds(39, 28, 193, 65);
 		contentPane.add(labelImgLogo);
+	}
+
+	private void tituloVentana() {
+		labelTituloModificar = new JLabel("Modificar Libro  ");
+		labelTituloModificar.setForeground(new Color(57, 81, 68));
+		labelTituloModificar.setFont(new Font("Segoe UI", Font.BOLD, 32));
+		labelTituloModificar.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelTituloModificar.setBounds(386, 28, 259, 53);
+		contentPane.add(labelTituloModificar);
+	}
+
+	private void imagenLibro() throws MalformedURLException {
+		URL enlaceImagen = new URL("https://imagessl9.casadellibro.com/a/l/s7/79/9788466649179.webp");
+		
+		
+		JPanel panelImagenLibro = new JPanel();
+		panelImagenLibro.setBounds(386, 104, 253, 298);
+		contentPane.add(panelImagenLibro);
+        ImageIcon icon = new ImageIcon(enlaceImagen);
+        Image image = icon.getImage().getScaledInstance(contentPane.WIDTH,contentPane.HEIGHT, Image.SCALE_SMOOTH); // Ajusta el tamaño a 100x100
+        icon = new ImageIcon(image);
+        
+		ImageIcon imageIllustration = new ImageIcon(enlaceImagen);
+//		ImageIcon imageIllustration = new ImageIcon("./images/Bookshop-ill.png");
+
+		JLabel labelImagenLibro = new JLabel(imageIllustration);
+		panelImagenLibro.add(labelImagenLibro);
+	}
+
+	private void isbn() {
+		JLabel labelISBN = new JLabel("ISBN");
+		labelISBN.setBounds(39, 104, 81, 14);
+		contentPane.add(labelISBN);	
+		
+		textFieldISBN = new JTextField();
+		textFieldISBN.setBounds(39, 120, 238, 27);
+		contentPane.add(textFieldISBN);
+		textFieldISBN.setColumns(10);
 	}
 
 	private void titulo() {
@@ -115,17 +149,6 @@ public class CrearLibro extends JDialog {
 		contentPane.add(textFieldTitulo);
 	}
 
-	private void isbn() {
-		JLabel labelISBN = new JLabel("ISBN");
-		labelISBN.setBounds(39, 104, 81, 14);
-		contentPane.add(labelISBN);	
-		
-		textFieldISBN = new JTextField();
-		textFieldISBN.setBounds(39, 120, 238, 27);
-		contentPane.add(textFieldISBN);
-		textFieldISBN.setColumns(10);
-	}
-
 	private void autor() {
 		labelNombreAutor = new JLabel("Nombre Autor");
 		labelNombreAutor.setBounds(39, 212, 81, 14);
@@ -136,7 +159,6 @@ public class CrearLibro extends JDialog {
 		textFieldNombreAutor.setColumns(10);
 		textFieldNombreAutor.setBounds(39, 228, 238, 27);
 		contentPane.add(textFieldNombreAutor);
-		
 	}
 
 	private void cantidad() {
@@ -164,34 +186,12 @@ public class CrearLibro extends JDialog {
 	}
 
 	private void botonCrear() {
-		JButton btnCrearLibro = new JButton("Crear Libro");
+		JButton btnCrearLibro = new JButton("Modificar Libro");
 		btnCrearLibro.setForeground(new Color(255, 255, 255));
 		btnCrearLibro.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnCrearLibro.setBackground(new Color(57, 81, 68));
 		btnCrearLibro.setBounds(39, 374, 238, 27);
 		contentPane.add(btnCrearLibro);
-		
-		btnCrearLibro.addActionListener(e->{
-			String isbn = textFieldISBN.getText(); 
-			String titulo = textFieldTitulo.getText();
-			String nombre = textFieldNombreAutor.getText();
-			int cantidad = 0;
-			try {
-			 cantidad = Integer.parseInt(textFieldCantidad.getText());
-			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			String url = textFieldEnlaceImagen.getText();
-			Libro nuevoLibro = new Libro(isbn,titulo,nombre,cantidad,url);
-			Main.listaLibros.add(nuevoLibro);
-			
-			System.out.println(Main.listaLibros.toString());
-			System.out.println(Main.listaLibros.size());
-			
-			JOptionPane.showMessageDialog(null, isbn, "Correcto", JOptionPane.DEFAULT_OPTION); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
-
-		});
 		
 		//JOptionPane.showMessageDialog(null, "Este es un mensaje de alerta", "Correcto", JOptionPane.DEFAULT_OPTION); Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
 	}
