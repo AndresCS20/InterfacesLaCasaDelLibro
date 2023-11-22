@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
 
 
 
-
 public class CrearLibro extends JDialog {
 	
 	public  ArrayList<String> listaErrores=new ArrayList<String>();
@@ -35,8 +34,6 @@ public class CrearLibro extends JDialog {
 	String error8 = "El título no puede contener comas. ";
 	String error9 = "El autor no puede contener comas. ";
 	String error10 = "El enlace no puede contener comas. ";
-	
-	
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
