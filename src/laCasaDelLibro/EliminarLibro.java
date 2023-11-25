@@ -95,24 +95,24 @@ public class EliminarLibro extends JDialog {
 				Libro libroTemp = buscarLibro(listaLibros);
 				if (libroTemp != null) {
 					if (buscarLibro(listaLibros).getTitulo().equalsIgnoreCase(listaLibros.get(i).getTitulo())) {
-						System.out.println("El libro " + listaLibros.get(i) + " ha sido eliminado");
-
 						listaLibros.remove(listaLibros.get(i));
+						JOptionPane.showMessageDialog(null, "Libro eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			}
 		}
 	}
+		
 
 	public static void errores() {
 		String error1 = "El libro no existe";
 		String error2 = "Debe rellenar el campo";
 		Libro l = buscarLibro(Main.listaLibros);
 		if (l == null && tf_buscar.getText().length() != 0) {
-			JOptionPane.showConfirmDialog(null, error1, "Ha ocurrido un error", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, error1, "Ha ocurrido un error", JOptionPane.WARNING_MESSAGE);
 		}
 		if (tf_buscar.getText().length() == 0) {
-			JOptionPane.showConfirmDialog(null, error2, "Ha ocurrido un error", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, error2, "Ha ocurrido un error", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }
