@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
 
 
 
-
 public class CrearLibro extends JDialog {
 	
 	public  ArrayList<String> listaErrores=new ArrayList<String>();
@@ -40,11 +39,10 @@ public class CrearLibro extends JDialog {
 	ArrayList <String> contenido = new ArrayList<String>();
 	
 	
-	
-//	String contenido1 ="png";
-//	String contenido2 = "jpg"; 
-//	String contenido"jpeg", "gif" , "webp";
-	
+		
+	//	String contenido1 ="png";
+	//	String contenido2 = "jpg"; 
+	//	String contenido"jpeg", "gif" , "webp";
 	
 
 	private static final long serialVersionUID = 1L;
