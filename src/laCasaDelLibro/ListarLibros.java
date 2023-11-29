@@ -42,7 +42,7 @@ public class ListarLibros extends JDialog {
 	 */
 	public ListarLibros() {
 		setResizable(false);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); //PUEDE QUE ESTE EL PROBLEMA ACÁ
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // PUEDE QUE ESTE EL PROBLEMA ACÁ
 		setBounds(100, 100, 691, 481);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -50,14 +50,13 @@ public class ListarLibros extends JDialog {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		logo();
-		
+
 		tituloVentana();
-		
-		
+
 	}
-	
+
 	private void logo() {
 		ImageIcon imageIcon = new ImageIcon("./images/logo-b.png");
 		JLabel labelImgLogo = new JLabel(imageIcon);
@@ -72,20 +71,26 @@ public class ListarLibros extends JDialog {
 		labelTituloListarLibros.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelTituloListarLibros.setBounds(386, 28, 259, 53);
 		contentPane.add(labelTituloListarLibros);
-		
+
 		table = new JTable();
 		table.setBackground(new Color(192, 192, 192));
 		table.setBounds(39, 138, 592, 264);
 		contentPane.add(table);
-		
+
 		JButton btnImportarCSV = new JButton("Importar CSV");
+		btnImportarCSV.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CSV.importarCSV();
+			}
+		});
 		btnImportarCSV.setBackground(new Color(170, 139, 86));
 		btnImportarCSV.setBounds(386, 92, 115, 34);
 		contentPane.add(btnImportarCSV);
-		
+
 		JButton btnExportarCsv = new JButton("Exportar CSV");
 		btnExportarCsv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CSV.exportarCSV();
 			}
 		});
 		btnExportarCsv.setBackground(new Color(170, 139, 86));
