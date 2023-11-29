@@ -37,12 +37,16 @@ public class CrearLibro extends JDialog {
 	String error10 = "El enlace no puede contener comas. ";
 	String error11 = "El ISBN ya existe, introduzca otro.";
 	String error12 = "Debe contener una extensión real de imagen.";
-
 	
 	ArrayList <String> extensiones = new ArrayList<String>();
 	
 	
 		
+		String contenido1 ="png";
+		String contenido2 = "jpg"; 
+		String contenido3 = "jpeg";
+		String contenido4 = "gif";
+		String contenido5 = "webp";
 	
 	public void anadirExtensiones() {
 		
@@ -52,7 +56,6 @@ public class CrearLibro extends JDialog {
 		extensiones.add("gif");
 		extensiones.add("webp");
 	}
-
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
