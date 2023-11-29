@@ -16,6 +16,7 @@ import javax.swing.JDialog;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.SwingConstants;
 
@@ -34,6 +35,24 @@ public class CrearLibro extends JDialog {
 	String error8 = "El título no puede contener comas. ";
 	String error9 = "El autor no puede contener comas. ";
 	String error10 = "El enlace no puede contener comas. ";
+	String error11 = "El ISBN ya existe, introduzca otro.";
+	String error12 = "Debe contener una extensión real de imagen.";
+
+	
+	ArrayList <String> extensiones = new ArrayList<String>();
+	
+	
+		
+	
+	public void anadirExtensiones() {
+		
+		extensiones.add("png");
+		extensiones.add("jpg");
+		extensiones.add("jpeg");
+		extensiones.add("gif");
+		extensiones.add("webp");
+	}
+
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -77,6 +96,8 @@ public class CrearLibro extends JDialog {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		anadirExtensiones();
 		
 		logo();
 		
@@ -189,6 +210,7 @@ public class CrearLibro extends JDialog {
 
 			String isbn = textFieldISBN.getText();
 			comprobarISBN(isbn);
+		
 			String titulo = textFieldTitulo.getText();
 			comprobarTitulo(titulo);
 			String nombre = textFieldNombreAutor.getText();
@@ -206,20 +228,24 @@ public class CrearLibro extends JDialog {
 				for(String error : listaErrores) {
 				 totalErrores+=error;
 				}
-				JOptionPane.showMessageDialog(null, totalErrores, "Ha ocurrido un error", JOptionPane.DEFAULT_OPTION); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
+				JOptionPane.showMessageDialog(null, totalErrores, "Ha ocurrido un error", JOptionPane.WARNING_MESSAGE); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
 
 				System.out.println(totalErrores);
+			}else {
+				Libro nuevoLibro = new Libro(isbn,titulo,nombre,cantidad,url);
+				Main.listaLibros.add(nuevoLibro);
+				JOptionPane.showMessageDialog(null, "Se ha creado el libro correctamente", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+				
+				System.out.println(Main.listaLibros.toString());
+				System.out.println(Main.listaLibros.size());
+				
+				
 			}
-			Libro nuevoLibro = new Libro(isbn,titulo,nombre,cantidad,url);
-			Main.listaLibros.add(nuevoLibro);
-			
-			System.out.println(Main.listaLibros.toString());
-			System.out.println(Main.listaLibros.size());
-			
+		
 			
 		});
 		
-		//JOptionPane.showMessageDialog(null, "Este es un mensaje de alerta", "Correcto", JOptionPane.DEFAULT_OPTION); Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
+		 
 	}
 	
 	
@@ -229,6 +255,12 @@ public class CrearLibro extends JDialog {
 		}
 		if(isbn.contains(",")) {
 			listaErrores.add(error7);
+		}
+		for (Libro l : Main.listaLibros) {
+			if (l.getISBN().equals(isbn)) {
+				listaErrores.add(error11);
+				break;
+			}
 		}
 	}
 	
@@ -252,12 +284,27 @@ public class CrearLibro extends JDialog {
 	}
 	
 	public void comprobarEnlace(String enlace) {
+		
 		if(enlace.length()==0) {
 			listaErrores.add(error6);
 		}
 		if(enlace.contains(",")) {
 			listaErrores.add(error10);
 		}
+		
+	
+		String [] enlacePartido = enlace.split("\\.");
+		System.out.println(enlace);
+		System.out.println(Arrays.toString(enlacePartido));
+		if(enlacePartido.length> 0) {
+			
+			
+			if(!extensiones.contains(enlacePartido[enlacePartido.length-1])) {
+				listaErrores.add(error12);
+			}
+		}
+		
+		
 	}
 
 	
