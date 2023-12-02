@@ -12,8 +12,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Libro libro1 = new Libro("978-0345803481", "Ready Player One", "Ernest Cline", 20, "http://example.com/readyplayerone.jpg");
-        Libro libro2 = new Libro("978-0439064873", "Harry Potter and the Chamber of Secrets", "J.K. Rowling", 30, "http://example.com/harrypotter.jpg");
+		Libro libro1 = new Libro("9780345803481", "Ready Player One", "Ernest Cline", 20, "https://imagessl9.casadellibro.com/a/l/s7/79/9788466649179.webp");
+        Libro libro2 = new Libro("9780439064873", "Harry Potter and the Chamber of Secrets", "J.K. Rowling", 30, "http://example.com/harrypotter.jpg");
         Libro libro3 = new Libro("978-0451524935", "1984", "George Orwell", 25, "http://example.com/1984.jpg");
         Libro libro4 = new Libro("978-0140283334", "Fight Club", "Chuck Palahniuk", 15, "http://example.com/fightclub.jpg");
         Libro libro5 = new Libro("978-0307474278", "The Girl with the Dragon Tattoo", "Stieg Larsson", 10, "http://example.com/dragontattoo.jpg");
@@ -31,13 +31,13 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-//					Principal frame = new Principal();
-//					frame.setTitle("La Casa del Libro - Pagina Principal");
-//					frame.setVisible(true);
+					Principal frame = new Principal();
+					frame.setTitle("La Casa del Libro - Pagina Principal");
+					frame.setVisible(true);
 					
-					VerMasLibro dialog = new VerMasLibro();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
+//					VerMasLibro dialog = new VerMasLibro();
+//					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
