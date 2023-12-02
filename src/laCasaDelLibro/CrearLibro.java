@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import javax.swing.SwingConstants;
 
 
+public static ArrayList<String> listaErrores;
 
 public class CrearLibro extends JDialog {
-public static ArrayList<String> listaErrores;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

@@ -37,10 +37,6 @@ public class Libro {
 		this.cantidad = cantidad;
 	}
 
-	public Libro() {
-		super();
-	}
-
 	// ----- Setters && Getters -----//
 
 	public String getISBN() {
