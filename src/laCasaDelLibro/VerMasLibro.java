@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -35,7 +36,8 @@ public class VerMasLibro extends JDialog {
 	private JLabel labelIsbn;
 	private JLabel labelAutor;
 	private JLabel labelStock;
-	private Libro libro = new Libro("8901723893", "Ready Player One Ready Two", "Ernest Cline", 23, "http://example.com/readyplayerone.jpg");
+	//private static Libro libro = new Libro("1234567890123", "Ready Player One Ready Two", "Ernest Cline", 23, "http://example.com/readyplayerone.jpg");
+	private static Libro libro = new Libro();
 	
 	public Libro getLibro() {
 		return libro;
@@ -48,20 +50,24 @@ public class VerMasLibro extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			VerMasLibro dialog = new VerMasLibro();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			VerMasLibro dialog = new VerMasLibro(libro);
+//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//			dialog.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public VerMasLibro() {
+	public VerMasLibro(Libro libroVer) {
+//		VerMasLibro.this.repaint();
+		setModal(true);
+		this.libro = libroVer;
+		
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); //PUEDE QUE ESTE EL PROBLEMA ACÁ
 		setBounds(100, 100, 691, 481);
@@ -131,28 +137,28 @@ public class VerMasLibro extends JDialog {
 		labelTitulo = new JLabel(libro.getTitulo());
 		labelTitulo.setVerticalAlignment(SwingConstants.TOP);
 		labelTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		labelTitulo.setBounds(210, 30, 226, 74);
+		labelTitulo.setBounds(210, 30, 365, 51);
 		panelInfoLibro.add(labelTitulo);
 	}
 	
 	private void autor () {
 		labelAutor = new JLabel(libro.getAutor());
 		labelAutor.setFont(new Font("Segoe UI", Font.BOLD, 23));
-		labelAutor.setBounds(210, 114, 300, 44);
+		labelAutor.setBounds(210, 91, 225, 44);
 		panelInfoLibro.add(labelAutor);
 	}
 	
 	private void isbn () {
 		labelIsbn = new JLabel(libro.getISBN());
 		labelIsbn.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		labelIsbn.setBounds(210, 158, 300, 44);
+		labelIsbn.setBounds(210, 158, 225, 44);
 		panelInfoLibro.add(labelIsbn);
 	}
 	
 	private void stock () {
 		labelStock = new JLabel("Stock: " + libro.getCantidad());
 		labelStock.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		labelStock.setBounds(210, 216, 300, 44);
+		labelStock.setBounds(210, 216, 225, 44);
 		panelInfoLibro.add(labelStock);
 	}
 	
@@ -166,7 +172,7 @@ public class VerMasLibro extends JDialog {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {					
-							ModificarLibro modificarLibro = new ModificarLibro();
+							ModificarLibro modificarLibro = new ModificarLibro(libro);
 							modificarLibro.setTitle("La Casa del Libro - Modificar Libro");
 							modificarLibro.setModalityType(ModalityType.MODELESS);
 							modificarLibro.setVisible(true);
@@ -180,34 +186,41 @@ public class VerMasLibro extends JDialog {
 			}
 		});
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		btnNewButton.setBounds(439, 48, 136, 56);
+		btnNewButton.setBounds(439, 123, 136, 56);
 		panelInfoLibro.add(btnNewButton);
 	}
 	
 	private void botonEliminar () {
 		JButton btnNewButton = new JButton("Eliminar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.listaLibros.remove(libro);
+				JOptionPane.showMessageDialog(null, "Libro eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
+//				this.actionPerformed(setVisible(false));
+				System.out.println(Main.listaLibros.size());
+				VerMasLibro.this.dispose();
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		btnNewButton.setBounds(439, 150, 136, 56);
+		btnNewButton.setBounds(439, 204, 136, 56);
 		panelInfoLibro.add(btnNewButton);
 	}
 	
 	
 	private void imagenLibro() throws MalformedURLException {
 
-		URL enlaceImagen = new URL("https://imagessl9.casadellibro.com/a/l/s7/79/9788466649179.webp");
-		
-		
-		JPanel panelImagenLibro = new JPanel();
-		panelImagenLibro.setBounds(20, 20, 170, 240);
-		panelInfoLibro.add(panelImagenLibro);
+		URL enlaceImagen = new URL(libro.getUrlImagen());
         ImageIcon icon = new ImageIcon(enlaceImagen);
-        Image image = icon.getImage().getScaledInstance(contentPane.WIDTH,contentPane.HEIGHT, Image.SCALE_SMOOTH); // Ajusta el tamaño a 100x100
-        icon = new ImageIcon(image);
+        Image image = icon.getImage();
         
-		ImageIcon imageIllustration = new ImageIcon(enlaceImagen);
-//		ImageIcon imageIllustration = new ImageIcon("./images/Bookshop-ill.png");
-
-		JLabel labelImagenLibro = new JLabel(imageIllustration);
-		panelImagenLibro.add(labelImagenLibro);
+        JLabel imagenPortada = new JLabel();
+        imagenPortada.setBounds(20, 20, 170, 240);
+        
+        image = image.getScaledInstance(imagenPortada.getWidth(), imagenPortada.getHeight(), Image.SCALE_DEFAULT);
+        
+		imagenPortada.setIcon(new ImageIcon(image));
+		panelInfoLibro.add(imagenPortada);
+		
 	}
 }
