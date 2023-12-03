@@ -54,6 +54,7 @@ public class ListarLibros extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarLibros() {
+		setModal(true);
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // PUEDE QUE ESTE EL PROBLEMA ACÁ
 		setBounds(100, 100, 691, 481);
@@ -190,26 +191,26 @@ public class ListarLibros extends JDialog {
 			datosLibro.add(nombreLibro2);
 			nombreLibro2.setText(libro.getTitulo());
 
-			JButton btnVerMas = new JButton("detalles");
+			JButton btnVerMas = new JButton("Detalles");
 
 			datosLibro.add(btnVerMas);
-//			btnVerMas.addActionListener(e -> {
-//				//PREGUNTAR A JAVIER HACER QUE LA VENTANA SEA MODAL Y NO CIERRE LA VENTANA PRINCIPAL
-//				EventQueue.invokeLater(new Runnable() {
-//					public void run() {
-//						try {					
-//							VerMasLibro listarLibros = new VerMasLibro();
-//							listarLibros.setTitle("La Casa del Libro - Listar Libros");
-//							listarLibros.setModalityType(ModalityType.MODELESS);
-//							listarLibros.setVisible(true);
-//							
-//						} catch (Exception e) {
-//							e.printStackTrace();
-//						}
-//					}
-//				});
-//
-//			});
+			btnVerMas.addActionListener(e -> {
+				
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {					
+							VerMasLibro listarLibros = new VerMasLibro(libro);
+							listarLibros.setTitle("La Casa del Libro - Listar Libros");
+							listarLibros.setModalityType(ModalityType.APPLICATION_MODAL);
+							listarLibros.setVisible(true);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+
+			});
 			p1.add(datosLibro);
 
 		}

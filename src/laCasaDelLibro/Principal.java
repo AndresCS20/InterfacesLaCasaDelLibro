@@ -103,7 +103,7 @@ public class Principal extends JFrame {
 					try {					
 						CrearLibro crearLibro = new CrearLibro();
 						crearLibro.setTitle("La Casa del Libro - Crear Libro");
-						crearLibro.setModalityType(ModalityType.MODELESS);
+		                crearLibro.setModalityType(ModalityType.APPLICATION_MODAL);
 						crearLibro.setVisible(true);
 						
 					} catch (Exception e) {
@@ -131,7 +131,7 @@ public class Principal extends JFrame {
 					try {					
 						ListarLibros listarLibros = new ListarLibros();
 						listarLibros.setTitle("La Casa del Libro - Listar Libros");
-						listarLibros.setModalityType(ModalityType.MODELESS);
+						listarLibros.setModalityType(ModalityType.APPLICATION_MODAL);
 						listarLibros.setVisible(true);
 						
 					} catch (Exception e) {
@@ -162,7 +162,7 @@ public class Principal extends JFrame {
 					try {					
 						EliminarLibro eliminarLibros = new EliminarLibro();
 						eliminarLibros.setTitle("La Casa del Libro - Eliminar Libros");
-						eliminarLibros.setModalityType(ModalityType.MODELESS);
+						eliminarLibros.setModalityType(ModalityType.APPLICATION_MODAL);
 						eliminarLibros.setVisible(true);
 						
 					} catch (Exception e) {

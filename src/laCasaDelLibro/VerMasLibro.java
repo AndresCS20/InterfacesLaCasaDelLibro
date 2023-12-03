@@ -27,18 +27,12 @@ public class VerMasLibro extends JDialog {
 	private JLabel labelTitulo;
 	private JLabel labelTituloListarLibros;
 	private JTable table;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			VerMasLibro dialog = new VerMasLibro();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
+	private JLabel labelIsbn;
+	private JLabel labelAutor;
+	private JLabel labelStock;
+	private static Libro libro;
+	
 
 	/**
 	 * Create the dialog.
@@ -58,18 +52,11 @@ public class VerMasLibro extends JDialog {
 		panelInfoLibro.setBounds(39, 105, 585, 298);
 		contentPane.add(panelInfoLibro);
 		panelInfoLibro.setLayout(null);
-		//panelInfoLibro.add(panelInfoLibro);
 		logo();
 		
 		tituloVentana();
 		
-//		try {
-//			imagenLibro();
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
+
 	}
 	
 	private void logo() {
@@ -87,9 +74,90 @@ public class VerMasLibro extends JDialog {
 		labelTituloListarLibros.setBounds(386, 28, 259, 53);
 		contentPane.add(labelTituloListarLibros);
 		
+	}
+	
+	private void titulo () {
+		labelTitulo = new JLabel(libro.getTitulo());
+		labelTitulo.setVerticalAlignment(SwingConstants.TOP);
+		labelTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		labelTitulo.setBounds(210, 30, 365, 51);
+		panelInfoLibro.add(labelTitulo);
+	}
+	
+	private void autor () {
+		labelAutor = new JLabel(libro.getAutor());
+		labelAutor.setFont(new Font("Segoe UI", Font.BOLD, 23));
+		labelAutor.setBounds(210, 91, 225, 44);
+		panelInfoLibro.add(labelAutor);
+	}
+	
+	private void isbn () {
+		labelIsbn = new JLabel(libro.getISBN());
+		labelIsbn.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		labelIsbn.setBounds(210, 158, 225, 44);
+		panelInfoLibro.add(labelIsbn);
+	}
+	
+	private void stock () {
+		labelStock = new JLabel("Stock: " + libro.getCantidad());
+		labelStock.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		labelStock.setBounds(210, 216, 225, 44);
+		panelInfoLibro.add(labelStock);
+	}
+	
+	private void botonModificar () {
+		JButton btnNewButton = new JButton("Modificar");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(57, 81, 68));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				ModificarLibro mL = new ModificarLibro();
+//				mL.setVisible(true);
+				
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {					
+							ModificarLibro modificarLibro = new ModificarLibro(libro);
+							modificarLibro.setTitle("La Casa del Libro - Modificar Libro");
+							modificarLibro.setModalityType(ModalityType.APPLICATION_MODAL);
+							modificarLibro.setVisible(true);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		btnNewButton.setBounds(439, 123, 136, 56);
+		panelInfoLibro.add(btnNewButton);
+	}
+	
+	private void botonEliminar () {
+		JButton btnNewButton = new JButton("Eliminar");
+		btnNewButton.setBackground(new Color(248, 102, 102));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.listaLibros.remove(libro);
+				JOptionPane.showMessageDialog(null, "Libro eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
+//				this.actionPerformed(setVisible(false));
+				System.out.println(Main.listaLibros.size());
+				VerMasLibro.this.dispose();
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		btnNewButton.setBounds(439, 204, 136, 56);
+		panelInfoLibro.add(btnNewButton);
+	}
+	
+	/*
+	private void imagenLibro() throws MalformedURLException {
 
 		
-	}
+	}*/
 	
 	
 	private JLabel imagenLibro() throws MalformedURLException {
