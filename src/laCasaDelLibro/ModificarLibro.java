@@ -16,6 +16,8 @@ import javax.swing.JDialog;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -70,9 +72,19 @@ public class ModificarLibro extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarLibro(Libro libroMod) {
-		setModal(true);
+	   private VerMasLibro verMasLibro; // Agrega un campo para almacenar la referencia de VerMasLibro
+
+		public ModificarLibro(VerMasLibro verMas, Libro libroMod) {
+		this.verMasLibro = verMas; // Almacena la referencia de VerMasLibro recibida
 		this.libro = libroMod;
+		
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                actualizarDatosVerMasLibro();
+            }
+        });
+		
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);//PUEDE QUE ESTE EL PROBLEMA ACÁ
 		setBounds(100, 100, 691, 481);
@@ -107,6 +119,15 @@ public class ModificarLibro extends JDialog {
 		}
 	}
 
+	    private void actualizarDatosVerMasLibro() {
+	        // Actualizar los datos en VerMasLibro con los datos del libro modificado
+	        // Aquí actualizas el libro con los datos modificados
+	        // this.libro.setXXX(...);
+	        
+	        // Llamar al método de actualización en la instancia existente de VerMasLibro
+	        verMasLibro.actualizarDatos(this.libro);
+	    }
+		
 	private void logo() {
 		ImageIcon imageIcon = new ImageIcon("./images/logo-b.png");
 		JLabel labelImgLogo = new JLabel(imageIcon);

@@ -36,6 +36,7 @@ public class VerMasLibro extends JDialog {
 	private JLabel labelIsbn;
 	private JLabel labelAutor;
 	private JLabel labelStock;
+	private JLabel imagenPortada;
 	private static Libro libro;
 
 
@@ -145,8 +146,8 @@ public class VerMasLibro extends JDialog {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {					
-							ModificarLibro modificarLibro = new ModificarLibro(libro);
-							modificarLibro.setTitle("La Casa del Libro - Modificar Libro");
+							 ModificarLibro modificarLibro = new ModificarLibro(VerMasLibro.this, libro);
+							 modificarLibro.setTitle("La Casa del Libro - Modificar Libro");
 							modificarLibro.setModalityType(ModalityType.APPLICATION_MODAL);
 							modificarLibro.setVisible(true);
 							
@@ -162,6 +163,24 @@ public class VerMasLibro extends JDialog {
 		btnNewButton.setBounds(439, 123, 136, 56);
 		panelInfoLibro.add(btnNewButton);
 	}
+	
+    public void actualizarDatos(Libro libro) {
+        // Actualizar la información en VerMasLibro con los datos del libro recibido
+        labelTitulo.setText(libro.getTitulo());
+        labelAutor.setText(libro.getAutor());
+        labelIsbn.setText(libro.getISBN());
+        labelStock.setText("Stock: " + libro.getCantidad());
+
+        try {
+            // Actualizar la imagen del libro si es necesario
+            URL nuevaURLImagen = new URL(libro.getUrlImagen());
+            ImageIcon icon = new ImageIcon(nuevaURLImagen);
+            Image nuevaImagen = icon.getImage().getScaledInstance(imagenPortada.getWidth(), imagenPortada.getHeight(), Image.SCALE_SMOOTH);
+            imagenPortada.setIcon(new ImageIcon(nuevaImagen));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	private void botonEliminar () {
 		JButton btnNewButton = new JButton("Eliminar");
@@ -187,7 +206,7 @@ public class VerMasLibro extends JDialog {
         ImageIcon icon = new ImageIcon(enlaceImagen);
         Image image = icon.getImage();
         
-        JLabel imagenPortada = new JLabel();
+        imagenPortada = new JLabel();
         imagenPortada.setBounds(20, 20, 170, 240);
         
         image = image.getScaledInstance(imagenPortada.getWidth(), imagenPortada.getHeight(), Image.SCALE_DEFAULT);
