@@ -36,22 +36,8 @@ public class VerMasLibro extends JDialog {
 	private JLabel labelIsbn;
 	private JLabel labelAutor;
 	private JLabel labelStock;
-	//private static Libro libro = new Libro("1234567890123", "Ready Player One Ready Two", "Ernest Cline", 23, "http://example.com/readyplayerone.jpg");
 	private static Libro libro;
-	
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		try {
-//			VerMasLibro dialog = new VerMasLibro(libro);
-//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dialog.setVisible(true);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	/**
 	 * Create the dialog.
@@ -100,12 +86,6 @@ public class VerMasLibro extends JDialog {
 		
 		botonEliminar();
 		
-//		try {
-//			imagenLibro();
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		
 	}
 	
@@ -159,8 +139,6 @@ public class VerMasLibro extends JDialog {
 		JButton btnNewButton = new JButton("Modificar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				ModificarLibro mL = new ModificarLibro();
-//				mL.setVisible(true);
 				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
@@ -189,7 +167,6 @@ public class VerMasLibro extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				Main.listaLibros.remove(libro);
 				JOptionPane.showMessageDialog(null, "Libro eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
-//				this.actionPerformed(setVisible(false));
 				System.out.println(Main.listaLibros.size());
 				VerMasLibro.this.dispose();
 				
