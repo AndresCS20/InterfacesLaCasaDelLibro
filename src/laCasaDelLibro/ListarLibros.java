@@ -192,7 +192,8 @@ public class ListarLibros extends JDialog {
 			nombreLibro2.setText(libro.getTitulo());
 
 			JButton btnVerMas = new JButton("Detalles");
-
+			btnVerMas.setBackground(new Color(57, 81, 68));
+			btnVerMas.setForeground(new Color(255, 255, 255));
 			datosLibro.add(btnVerMas);
 			btnVerMas.addActionListener(e -> {
 				

@@ -137,6 +137,8 @@ public class VerMasLibro extends JDialog {
 	
 	private void botonModificar () {
 		JButton btnNewButton = new JButton("Modificar");
+		btnNewButton.setBackground(new Color(57, 81, 68));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -163,6 +165,7 @@ public class VerMasLibro extends JDialog {
 	
 	private void botonEliminar () {
 		JButton btnNewButton = new JButton("Eliminar");
+		btnNewButton.setBackground(new Color(248, 102, 102));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.listaLibros.remove(libro);
