@@ -95,7 +95,7 @@ public class ModificarLibro extends JDialog {
 		
 		enlaceImagen();
 		
-		botonCrear();
+		botonModificar();
 		
 		tituloVentana();
 		
@@ -202,16 +202,16 @@ public class ModificarLibro extends JDialog {
 		contentPane.add(textFieldEnlaceImagen);
 	}
 
-	private void botonCrear() {
+	private void botonModificar() {
 		
-		JButton btnCrearLibro = new JButton("Modificar Libro");
-		btnCrearLibro.setForeground(new Color(255, 255, 255));
-		btnCrearLibro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnCrearLibro.setBackground(new Color(57, 81, 68));
-		btnCrearLibro.setBounds(39, 374, 238, 27);
-		contentPane.add(btnCrearLibro);
+		JButton btnModificarLibro = new JButton("Modificar Libro");
+		btnModificarLibro.setForeground(new Color(255, 255, 255));
+		btnModificarLibro.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnModificarLibro.setBackground(new Color(57, 81, 68));
+		btnModificarLibro.setBounds(39, 374, 238, 27);
+		contentPane.add(btnModificarLibro);
 		
-		btnCrearLibro.addActionListener(e->{
+		btnModificarLibro.addActionListener(e->{
 			listaErrores.clear();
 
 			String isbn = textFieldISBN.getText();
@@ -236,7 +236,9 @@ public class ModificarLibro extends JDialog {
 				JOptionPane.showMessageDialog(null, totalErrores, "Ha ocurrido un error", JOptionPane.WARNING_MESSAGE); //Crear alerta al crear el objeto correctamente (tambien lo puedes usar para debugear
 
 				System.out.println(totalErrores);
-			}
+			} else {
+				JOptionPane.showMessageDialog(null, "Libro modificado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
+			
 			
 			this.libro.setTitulo(titulo);
 			this.libro.setAutor(nombre);
@@ -245,7 +247,7 @@ public class ModificarLibro extends JDialog {
 			
 			System.out.println(Main.listaLibros.toString());
 			System.out.println(Main.listaLibros.size());
-			
+			}
 			
 		});
 		
